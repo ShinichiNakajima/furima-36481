@@ -1,24 +1,53 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## itemsテーブル
 
-Things you may want to cover:
+| Column        | Type      | Options                        |
+| ------------- | --------- | ------------------------------ |
+| name          | string    | null: false                    |
+| price         | integer   | null: false                    |
+| description   | text      | null: false                    |
+| category      | integer   | null: false                    |
+| condition     | integer   | null: false                    |
+| postage_by    | integer   | null: false                    |
+| prefecture    | integer   | null: false                    |
+| delivery_days | integer   | null: false                    |
+| user_id       | reference | null: false, foreign_key: true |
 
-* Ruby version
+### Association
+- belongs_to :user
+- has_one :transaction
 
-* System dependencies
 
-* Configuration
+## usersテーブル
 
-* Database creation
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| nickname           | string | null: false |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| birth_date         | string | null: false |
 
-* Database initialization
+### Association
+- has_many :items
+- has_many :transactions
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## transactionsテーブル
 
-* Deployment instructions
+| Column           | Type      | Options                        |
+| ---------------- | --------- | ------------------------------ |
+| card_number      | string    | null: false                    |
+| expiry_date      | string    | null: false                    |
+| security_code    | string    | null: false                    |
+| postal_code      | string    | null: false                    |
+| delivery_address | string    | null: false                    |
+| phone_number     | string    | null: false                    |
+| item_id          | reference | null: false, foreign_key: true |
+| user_id          | reference | null: false, foreign_key: true |
 
-* ...
+### Association
+- belongs_to :user
+- belongs_to :item
