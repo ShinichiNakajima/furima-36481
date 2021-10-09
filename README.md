@@ -45,7 +45,7 @@ belongs_to :scheduled_delivery
 
 
 
-## purchaseテーブル
+## purchasesテーブル
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | user   | references | null: false, foreign_key: true |
@@ -58,7 +58,7 @@ has_one :address
 
 
 
-## addressテーブル
+## addressesテーブル
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | postal_code      | string     | null: false                    |
