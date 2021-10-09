@@ -18,7 +18,6 @@
 ### アソシエーション
 has_many :items
 has_many :purchases
-has_one :address
 
 
 
@@ -33,7 +32,7 @@ has_one :address
 | prefecture_id          | integer    | null: false                    |
 | scheduled_delivery_id  | integer    | null: false                    |
 | price                  | integer    | null: false                    |
-| user_id                | references | null: false, foreign_key: true |
+| user                   | references | null: false, foreign_key: true |
 
 ### アソシエーション
 belongs_to :user
@@ -47,10 +46,10 @@ belongs_to :scheduled_delivery
 
 
 ## purchaseテーブル
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### アソシエーション
 belongs_to :item
@@ -65,14 +64,12 @@ has_one :address
 | postal_code      | string     | null: false                    |
 | prefecture_id    | integer    | null: false                    |
 | city             | string     | null: false                    |
-| street_address   | text       | null: false                    |
-| optional_address | text       |                                |
-| phone_number     | text       | null: false                    |
-| user_id          | references | null: false                    |
-| purchase_id      | references | null: false                    |
+| street_address   | string     | null: false                    |
+| optional_address | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false                    |
 
 ### アソシエーション
-belongs_to :user
 belongs_to :purchase
 belongs_to :prefecture
 
