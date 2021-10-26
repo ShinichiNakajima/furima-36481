@@ -4,9 +4,9 @@ window.addEventListener('load', () => {
 
   priceInput.addEventListener("input", () => {
     let tax = document.getElementById("add-tax-price");
-    tax.innerHTML = parseInt(priceInput.value * 0.1);
+    tax.innerHTML = Math.round(priceInput.value * 0.1);
     let profit = document.getElementById("profit");
-    profit.innerHTML = parseInt(priceInput.value * 0.9);
+    profit.innerHTML = Math.round(priceInput.value * 0.9);
   })
 
 });
