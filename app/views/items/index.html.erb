@@ -134,7 +134,7 @@
             <%= image_tag item.image, class: "item-img" %>
 
             <div class='sold-out'>
-              <% if item.purchase != nil %>
+              <% if item.purchase %>
                 <span>Sold Out!!</span>
               <% end %>
             </div>
