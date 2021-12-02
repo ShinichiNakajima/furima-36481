@@ -12,9 +12,6 @@ class OrderAddress
     validates :street_address
     validates :phone_number, length: { minimum: 10, maximum: 11, message: 'is too short' },
                              format: { with: /\A[0-9]+\z/, message: 'is invalid. Input only number' }
-    validates :price
-    validates :user_id
-    validates :item_id
   end
 
   def save
