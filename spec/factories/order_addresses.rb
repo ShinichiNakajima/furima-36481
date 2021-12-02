@@ -7,8 +7,5 @@ FactoryBot.define do
     street_address    { 'Kameari 5-36-1' }
     optional_address  { 'Kameari Kouenmae hashutsujo' }
     phone_number      { '00011112222' }
-    price             { 3000 }
-    user_id           { 1 }
-    item_id           { 1 }
   end
 end
