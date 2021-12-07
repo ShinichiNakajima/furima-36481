@@ -1,17 +1,18 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :street_address, :optional_address, :phone_number,
-                :order_id, :token, :price
+                :order_id, :token, :price, :user, :item
 
-  # validate some
   with_options presence: true do
     validates :token
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :street_address
-    validates :phone_number, length: { minimum: 10, maximum: 11, message: 'is too short' },
+    validates :phone_number, length: { minimum: 10, maximum: 11, too_short: 'is too short', too_long: 'is too long' },
                              format: { with: /\A[0-9]+\z/, message: 'is invalid. Input only number' }
+    validates :user
+    validates :item
   end
 
   def save
