@@ -3,7 +3,13 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '取引情報の保存' do
     before do
-      @order_address = FactoryBot.build(:order_address)
+      @user = FactoryBot.build(:user)
+      @user.save
+      @item = FactoryBot.build(:item)
+      @item.save
+      @order_address = FactoryBot.build(:order_address, user_id: @user.id, item_id: @item.id)
+      # 負荷軽減
+      sleep 0.01
     end
 
     context '内容に問題ない場合' do
@@ -69,12 +75,12 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'userが紐付いていなければ購入できない' do
-        @order_address.user = nil
+        @order_address.user_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐付いていなければ購入できない' do
-        @order_address.item  = nil
+        @order_address.item_id  = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
