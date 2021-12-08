@@ -38,8 +38,13 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
-      it '都道府県が必須である' do
+      it '都道府県の選択が必須である' do
         @order_address.prefecture_id = 1
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it '都道府県が必須である' do
+        @order_address.prefecture_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -53,7 +58,6 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Street address can't be blank")
       end
-
       it '電話番号が必須である' do
         @order_address.phone_number = ''
         @order_address.valid?
@@ -80,7 +84,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐付いていなければ購入できない' do
-        @order_address.item_id  = nil
+        @order_address.item_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
