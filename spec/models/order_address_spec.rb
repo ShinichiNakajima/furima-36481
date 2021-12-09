@@ -33,7 +33,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
       end
-      it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみ保存可能な' do
+      it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみ保存可能である' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
