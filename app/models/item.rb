@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   has_one          :order
   has_one_attached :image
 
-  
   validates :image, :name, :info, presence: true
 
   validates :price, presence: true
